@@ -14,5 +14,6 @@ node_modules
 *.xml
 *.txt
 
-# Minified files
+# Minified files #
+##################
 *.min.css

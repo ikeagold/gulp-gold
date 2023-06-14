@@ -34,37 +34,6 @@ const importDynamicModules = () => {
 
 const clean = () => del(['.tmp', 'dist']);
 
-const lintScripts = () =>
-  gulp
-    .src([
-      'src/scripts/**/*.js',
-      // 'src/**/*.html',
-      'gulpfile.js',
-      '!src/scripts/**/*.min.js',
-      '!node_modules/**'
-    ])
-    .pipe($.plumber())
-    .pipe($.eslint())
-    .pipe($.eslint.format());
-// .pipe($.if(!browserSync.active, $.eslint.failOnError()));
-
-const lintStyles = () =>
-  gulp
-    .src(['src/styles/**/*.css', '!src/styles/**/*.min.css'])
-    .pipe($.plumber())
-    .pipe(
-      $.stylelint({
-        // failAfterError: true,
-        reporters: [
-          {
-            formatter: 'verbose',
-            console: true
-          }
-        ],
-        debug: true
-      })
-    );
-
 const scripts = done => {
   webpack(webpackConfig, (err, stats) => {
     if (err) {
@@ -226,11 +195,11 @@ const watch = () => {
   gulp.watch(['src/**/*.html'], gulp.series(html, reload));
   gulp.watch(
     ['src/styles/**/*.css', '!src/styles/**/*.min.css'],
-    gulp.series(lintStyles, styles, reload)
+    gulp.series(styles, reload)
   );
   gulp.watch(
     ['src/scripts/**/*.js', '!src/scripts/**/*.min.js'],
-    gulp.series(lintScripts, scripts, reload)
+    gulp.series(scripts, reload)
   );
   gulp.watch(['src/images/**/*'], gulp.series(images, reload));
 };
@@ -239,8 +208,8 @@ const serve = () =>
   gulp.series(
     clean,
     gulp.parallel(
-      gulp.series(lintScripts, scripts),
-      gulp.series(lintStyles, styles),
+      scripts,
+      styles,
       images,
       copy
     ),
@@ -253,8 +222,8 @@ const build = cb => {
   gulp.series(
     clean,
     gulp.parallel(
-      gulp.series(lintScripts, scripts),
-      gulp.series(lintStyles, styles),
+      scripts,
+      styles,
       images,
       copy,
       html
@@ -262,12 +231,10 @@ const build = cb => {
   )(cb);
 };
 
-exports.lintScripts = lintScripts;
-exports.lintStyles = lintStyles;
 exports.serve = serve;
 exports.build = build;
 
 exports.default = build;
 
-// export { build, serve, lintScripts, lintStyles };
+// export { build, serve };
 // export default build;

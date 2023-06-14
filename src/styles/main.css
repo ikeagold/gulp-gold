@@ -2,7 +2,11 @@
 
 :root {
   /* stylelint-disable-next-line max-line-length */
-  --brand-font: -apple-system, "blinkmacsystemfont", ".SFNSDisplay-Regular", ".SFNSText-Regular", "SF UI Text", "San Francisco", "Noto Sans", "Helvetica Neue", "Roboto", "Droid Sans", "Oxygen", "Lucida Grande", "Segoe UI", "Fira Sans", "ubuntu", "cantarell", "helvetica", "arial", sans-serif;
+  --brand-font: -apple-system, "blinkmacsystemfont", ".SFNSDisplay-Regular",
+    ".SFNSText-Regular", "SF UI Text", "San Francisco", "Noto Sans",
+    "Helvetica Neue", "Roboto", "Droid Sans", "Oxygen", "Lucida Grande",
+    "Segoe UI", "Fira Sans", "ubuntu", "cantarell", "helvetica", "arial",
+    sans-serif;
 }
 
 body {
