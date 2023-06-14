@@ -13,3 +13,6 @@ node_modules
 *.webmanifest
 *.xml
 *.txt
+
+# Minified files
+*.min.css
