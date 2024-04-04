@@ -20,10 +20,10 @@ export default [
       },
       "sourceType": "module",
     },
-    "plugins": [
+    "plugins": {
       pluginImport,
       pluginReact
-    ],
+    },
     "rules": {
       "function-paren-newline": 0,
       "quotes": [
