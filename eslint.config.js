@@ -1,7 +1,6 @@
 import pluginImport from "eslint-plugin-import";
 import pluginReact from "eslint-plugin-react";
 import js from "@eslint/js";
-import babelParser from "@babel/eslint-parser";
 
 export default [
   js.configs.recommended,
@@ -11,7 +10,6 @@ export default [
     "languageOptions": {
       "ecmaVersion": "latest",
       "globals": {},
-      "parser": babelParser,
       "parserOptions": {
         "ecmaFeatures": {
           "impliedStrict": true,
@@ -23,13 +21,6 @@ export default [
     "plugins": {
       pluginImport,
       pluginReact
-    },
-    "rules": {
-      "function-paren-newline": 0,
-      "quotes": [
-        "warn",
-        "single"
-      ]
     }
   }
 ];
